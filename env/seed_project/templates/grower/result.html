@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="row m-4">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <h5>Results</h5>
+          <div class="col-4 col-sm-11">
+            <div class="form-group">
+              <br>
+              <br>
+              <label>Image</label>
+              </div>
+          </div>
+          <img style="height: 400px;" src="{{filePathName}}" alt="image">
+            {% comment %} {{filePathName}} {% endcomment %}
+            <br>
+            <br>
+            <br>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <p>Results are: <strong> {{ classification_result }}</strong></p>
+              </div>
+            </div>
+            <a href="{% url 'export_pdf' classification_result=classification_result %}" id="downloadButton" class="btn btn-outline-info mr-2"><i class="fas fa-download"></i> Download</a>
+            
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

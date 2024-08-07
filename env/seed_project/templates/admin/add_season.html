@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row m-4">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          {% comment %} <form method="post" action="{% url 'state_api' %}" enctype="multipart/form-data"> {% endcomment %}
+          <form method="post" action="{% url 'add_season' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="col-12">
+              <h5 class="form-title"><span>Add Season</span></h5>
+            </div>
+           {% include 'includes/messages.html' %}
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Season Name</label>
+                <input type="text" class="form-control" name="name" required/>
+              </div>
+            </div>
+              <div class="col-12 col-sm-6">
+              <div class="form-group">
+                <label>From Date</label>
+                <input type="date" class="form-control" name="season_from_date" required/>
+              </div>
+            </div>  
+            <div class="col-12 col-sm-6"> 
+              <div class="form-group">
+                <label>To Month</label>
+                <input type="date" class="form-control" name="season_to_date" required/>
+              </div>
+            </div>
+            {% comment %} <div class="col-12 col-sm-6">
+                <div class="form-group">
+                   <label>From Month</label>
+                   <div>
+                      <input type="date" class="form-control" name="from_month" required>
+                   </div>
+                </div>
+             </div> {% endcomment %}
+             {% comment %} <div class="col-12 col-sm-6">
+                <div class="form-group">
+                   <label>To Month</label>
+                   <div>
+                      <input type="date" class="form-control" name="to_month" required>
+                   </div>
+                </div>
+             </div> {% endcomment %}
+            <div class="col-12">
+              <button type="submit" class="btn btn-info">Add Season</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

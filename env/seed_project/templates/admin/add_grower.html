@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row m-4">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <form method="post" action="{% url 'add_grower' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="col-12">
+              <h5 class="form-title"><span>Add Grower</span></h5>
+            </div>
+           {% include 'includes/messages.html' %}
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Grower Image</label>
+                <input type="file" class="form-control" name="profile_pic" required/>
+              
+              </div>
+            
+            </div>
+            {% comment %} <img style="height: 200px;" src="{{filePathName}}" alt="image"> {% endcomment %}
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>First Name</label>
+                <input type="text" class="form-control" name="first_name" required/>
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" class="form-control" name="last_name" required/>
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Email</label>
+                <input type="text" class="form-control" name="email" required/>
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Username</label>
+                <input type="text" class="form-control" name="username" required/>
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control" name="password" required/>
+              </div>
+            </div>
+             <div class="col-4 col-sm-11">
+                <div class="form-group">
+                   <label>Aadhar Number</label>
+                   <input type="text" class="form-control" name="aadhar_number" id="aadhar_number" required>
+                </div>
+             </div>
+             <div class="col-4 col-sm-11">
+                <div class="form-group">
+                   <label>PAN Number</label>
+                   <input type="text" class="form-control" name="pan_number" id="pan_number" required>
+                </div>
+             </div>
+             <div class="col-4 col-sm-11">
+                <div class="form-group">
+                   <label>Mobile Number</label>
+                   <input type="text" class="form-control" name="mobile_number" id="mobile_number" required>
+                </div>
+             </div>
+             <div class="col-4 col-sm-11">
+                <div class="form-group">
+                   <label>Address</label>
+                   <textarea class="form-control" name="address" required ></textarea>
+                </div>
+             </div>
+             <div class="col-12 col-sm-6">
+                   <label>Country</label>
+                   <select class="form-control" name="country_id" required>
+                      <option value="0">Select country</option>
+                      {% for c in country %}
+                      <option value="{{ c.id }}" >{{c.name}}</option>
+                      {% endfor %}
+                   </select>
+             </div>
+             <br>
+             <div class="col-12 col-sm-6">
+                   <label>State</label>
+                   <select class="form-control" name="state_id" required>
+                      <option value="0">Select state</option>
+                      {% for s in state %}
+                      <option value="{{s.id}}">{{s.name}}</option>
+                      {% endfor %}
+                   </select>
+             </div>
+             <br>
+             <div class="col-12 col-sm-6">
+                   <label>City</label>
+                   <select class="form-control" name="city_id" required>
+                      <option value="0">Select city</option>
+                      {% for d in city %}
+                      <option value="{{d.id}}">{{d.name}}</option>
+                      {% endfor %}
+                   </select>
+             </div>
+             <br>
+             <div class="col-12 col-sm-6">
+              <label>Crop</label>
+              <select class="form-control" name="crop_id" required>
+                 <option value="0">Select crop</option>
+                 {% for c in crop %}
+                 <option value="{{ c.id }}">{{c.name}}</option>
+                 {% endfor %}
+              </select>
+              </div>
+              <br>
+              <div class="col-4 col-sm-11">
+                <div class="form-group">
+                  <label>Test Image</label>
+                  <input type="file" class="form-control" name="examination_image" required/>
+                </div>
+              </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-info">Add Grower</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+   
+{% endblock content %}

@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="content container-fluid">
+    <div class="page-header">
+      <div class="row align-items-center">
+        <div class="col">
+          <h3 class="page-title">Branch</h3>
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="{% url 'admin_home'%}">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Branches</li>
+          </ul>
+        </div>
+
+
+        <div class="col-auto text-right float-right ml-auto">
+          {% comment %} <a href="#" class="btn btn-outline-info mr-2"><i class="fas fa-download"></i> Download</a> {% endcomment %}
+          <a href="{% url 'add_branch' %}" class="btn btn-info"><i class="fas fa-plus"></i></a>
+        </div>
+      </div>
+    </div>
+    {% include 'includes/messages.html' %}
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card card-table">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table id="table_id" class="table table-hover table-center mb-0">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Pin</th>
+                    <th>Email</th>
+                    <th>Country</th>
+                    <th>State</th>
+                    <th>City</th>
+                    <th>Agency</th>
+                    <th class="text-right">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for g in branch %}
+                    <tr>
+                      <td>{{g.id}}</td>
+                      <td>
+                        <h2 class="table-avatar">
+                          <a href="{% url 'edit_branch' g.id %}">{{g.name}}</a>
+                        </h2>
+                      </td>
+                      <td>{{g.address}}</td>
+                      <td>{{g.pin}}</td>
+                      <td>{{g.email}}</td>
+                      <td>{{g.country_id.name}}</td>
+                      <td>{{g.state_id.name}}</td>
+                      <td>{{g.city_id.name}}</td>
+                      <td>{{g.agency_id.name}}</td>
+                      <td class="text-right">
+                        <div class="actions">
+                          <a href="{% url 'edit_branch' g.id %}" class="btn btn-sm bg-success-light mr-2"><i class="fas fa-pen"></i></a>
+                          {% comment %} <a href="{% url 'delete_branch' g.id %}" class="btn btn-sm bg-danger-light"><i class="fas fa-trash"></i></a> {% endcomment %}
+                          <a href="{% url 'delete_branch' g.id %}" class="btn btn-sm bg-danger-light delete-variety" data-variety-id="{{ g.id }}"><i class="fas fa-trash"></i></a>
+
+                        </div>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% block scripts %}
+  <script>
+    // Wait for the document to load
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get all the delete buttons with the "delete-grower" class
+      const deleteButtons = document.querySelectorAll('.delete-branch');
+  
+      // Add a click event listener to each delete button
+      deleteButtons.forEach(function(button) {
+        button.addEventListener('click', function(event) {
+          // Prevent the default behavior of the anchor tag
+          event.preventDefault();
+  
+          // Get the grower ID from the data-grower-id attribute
+          const growerId = button.getAttribute('data-branch-id');
+  
+          // Show the confirmation pop-up
+          if (confirm("Are you sure you want to delete thisbranch?")) {
+            // If the user confirms, redirect to the delete grower URL
+            window.location.href = "{% url 'delete_branch' 0 %}".replace('0', branchId);
+          }
+        });
+      });
+    });
+  </script>
+  {% endblock %}
+  {% endblock %}
+

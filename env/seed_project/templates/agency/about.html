@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block content %}
+<header>
+    <!-- Intro settings -->
+    <style>
+      /* Default height for small devices */
+      #intro-example {
+        height: 400px;
+      }
+  
+      /* Height for devices larger than 992px */
+      @media (min-width: 992px) {
+        #intro-example {
+          height: 600px;
+        }
+      }
+    </style>
+    
+    <div style="margin-top: 50px;margin-left: 100px;margin-right: 100px;">
+      
+        <div class="card text-center" >
+          <div class="card-header" style="height: 70px;">
+           <h3>About Us</h3> 
+          </div>
+          <div class="card-body" >
+            {% comment %} <h5 class="card-title">Special title treatment</h5> {% endcomment %}
+            <p class="card-text" style="font-size:large">This website presents a modern solution to the problem faced by commercial 
+              farmers and seed packaging industries. For researchers studying seeds, determining
+               the quality and performance of seeds is an essential task.   Filtering out every 
+               single bad or damaged seed in commercial farming is a very tedious, time-consuming, 
+               and error-prone task. Hence, filtering the seeds in clusters can minimize this issue.
+                This project outlines a method to improve the productivity of the seed production 
+                and seed packaging processes. Here we used a high-quality dataset that includes fine 
+                maize seeds and damaged maize seeds. By using CNN which is the Deep Learning technique
+                , the system classifies an input image as Excellent, Good, Average, Bad, and Worst 
+                quality seed cluster. The Good and Excellent seed clusters (sometimes Average) can
+                 be further used for cultivation, and the Worst and Bad clusters can be rejected. 
+                 Django framework is used to create the web application where the user can upload 
+                 the image and test for quality and get the certification.
+                   {% comment %} <a href="#" class="btn btn-info">Go somewhere</a> {% endcomment %}
+          </div>
+          
+        </div>
+        {% comment %} <h3  style="max-width: 18rem;margin-left: 300px">The Team</h3> {% endcomment %}
+        <div class="card text-center" >
+        <div class="card-header" style="height: 70px;">
+          <h3>The Team</h3> 
+         </div>
+         </div>
+    <div style="display: flex; flex-direction: row;">
+      <div class="card border-secondary mb-3" style="width: 21rem;margin-left: 100px;height: 100px;">
+        {% comment %} <div class="card-header">Header</div> {% endcomment %}
+        <div class="card-body text-secondary">
+          <h5 class="card-title">Sahana Kubsad</h5>
+          <p class="card-text">sahanakubsadsrk.842@gmail.com</p>
+        </div>
+      </div>
+      <div class="card border-secondary mb-3" style="width: 21rem;margin-left: 120px;height: 100px;">
+        {% comment %} <div class="card-header">Header</div> {% endcomment %}
+        <div class="card-body text-secondary">
+          <h5 class="card-title">Sindhu Jumanal</h5>
+          <p class="card-text">sindhujumanal31@gmail.com</p>
+        </div>
+      </div>
+      
+        </div>
+    
+        <div style="display: flex; flex-direction: row;">
+          <div class="card border-secondary mb-3" style="width: 21rem;margin-left: 100px;height: 100px;">
+            {% comment %} <div class="card-header">Header</div> {% endcomment %}
+            <div class="card-body text-secondary">
+              <h5 class="card-title">Shrusti Chindi</h5>
+              <p class="card-text">shrustichindi@gmail.com </p>
+            </div>
+          </div>
+          <div class="card border-secondary mb-3" style="width: 21rem;margin-left: 120px;height: 100px;">
+            {% comment %} <div class="card-header">Header</div> {% endcomment %}
+            <div class="card-body text-secondary">
+              <h5 class="card-title">
+                Supriya Pilli</h5>
+              <p class="card-text">supriyapilli227@gmail.com</p>
+            </div>
+          </div>
+          
+            </div>
+    
+        
+        
+       
+              
+            </div>
+{% comment %} <div class="row m-4">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+            <ul>
+                <li>
+                    <a style="color: black;" href="{% url 'add_details' %}"><h4><i class="fa fa-plus"></i><span> Add Details</span></h4></a>
+                </li>
+                <br>
+                <li>
+                    <a style="color: black;" href="{% url 'testing_page'%}"><h4><i class="fa fa-check"></i> <span>Testing</span></h4></a>
+                </li>
+            </ul>
+           
+            
+        </div>
+    </div></div>
+</div>{% endcomment %}
+{% endblock content %} 

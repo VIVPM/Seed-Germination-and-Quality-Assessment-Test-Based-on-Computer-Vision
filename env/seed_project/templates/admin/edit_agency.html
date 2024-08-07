@@ -1,0 +1,179 @@
+{% extends 'base.html' %}
+{% block content %}
+ 
+  <div class="row m-4">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <form method="post" action="{% url 'update_agency' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <a style="margin-left: 88%;" href="{% url 'view_agency' %}" id="downloadButton" class="btn btn-info mr-2"><i class="fas fa-angle-double-left"></i> Go back</a>
+         
+            <div class="col-12">
+              <h5 class="form-title"><span>Edit Agency</span></h5>
+            </div>
+            {% if messages %}
+              {% for message in messages %}
+                {% if message.tags == 'success' %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {{message}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                {%endif%}
+              {% endfor %}
+            {% endif %}
+
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Agency Name</label>
+                <input type="text" class="form-control" name="name" value="{% for i in agency %}{{i.name}}
+                {% endfor %}"/>
+                <input type="text" class="form-control" name="agency_id" value="{% for i in agency %} {{i.id}}
+                {% endfor %}" hidden />
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Address</label>
+                <input type="text" class="form-control" name="address" value="{% for i in agency %}{{i.address}}
+                {% endfor %}" />
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Pin</label>
+                <input type="text" class="form-control" name="pin" value="{% for i in agency %}{{i.pin}}
+                {% endfor %}"/>
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Establishment</label>
+                <input type="text" class="form-control" name="establishment" value="{% for i in agency %}{{i.establishment}}
+                {% endfor %}"/>
+              </div>
+            </div>
+            <div class="col-12 col-sm-6">
+                <div class="form-group">
+                   <label>gst</label>
+                   <div>
+                      <input type="text" class="form-control" name="gst" value="{% for i in agency %}{{i.gst}}
+                {% endfor %}"/>
+                   </div>
+                </div>
+             </div>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>tan</label>
+                <input type="text" class="form-control" name="tan" value="{% for i in agency %}{{i.tan}}
+                {% endfor %}" />
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Website</label>
+                <input type="text" class="form-control" name="website" value="{% for i in agency %}{{i.website}}
+                {% endfor %}"/>
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Mobile number</label>
+                <input type="text" class="form-control" name="mobile_number" value={% for i in agency %}{{i.mobile_number}}
+                {% endfor %}/>
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Email</label>
+                <input type="text" class="form-control" name="email" value={% for i in agency %}{{i.email}}
+                {% endfor %}/>
+              </div>
+            </div>
+              <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Contact Person</label>
+                <input type="text" class="form-control" name="contact_person" value={% for i in agency %}{{i.contact_person}}
+                {% endfor %}/>
+              </div>
+            </div>
+              <div class="col-12 col-sm-6">
+
+                <label for="country_id">Country:</label>
+                <select class="form-control" name="country_id" id="country_id">
+                  {% comment %} {% for a in agency %} {% endcomment %}
+                  {% for i in agency %}
+                  
+                  <option value="{{ i.country_id.id }}" >{{i.country_id.name }}</option>
+                  {% endfor %}
+                  {% for country in countries %}
+                  <option value="{{ country.id }}" {% if agency.country_id.id == country.id %}selected{% endif %}>{{ country.name }}</option>
+                    {% endfor %}
+                  {% comment %} {% for country in countries %}
+                  <option value="{{ country.id }}"  {% if country.id == agency.country_id.id %}selected{% endif %}>{{ country.name }}</option>
+                  {% endfor %} {% endcomment %}
+                </select>
+                {% comment %} <label>Country</label>
+                <select class="form-control" name="country_id" required>
+                   <option>Select country</option>
+                   {% for c in country %}
+                   <option value="{{ c.id }}" {% if country_obj.id == grower.agency_id %}selected{% endif %}>{{c.name}}</option>
+    
+                   {% endfor %}
+                </select> {% endcomment %}
+                </div>
+                <br>
+                <div class="col-12 col-sm-6">
+                  <label for="state_id">State</label>
+                  <select  class="form-control" name="state_id" id="state_id">
+                    {% for i in agency %}
+                  
+                  <option value="{{ i.state_id.id }}" >{{i.state_id.name }}</option>
+                  {% endfor %}
+                    {% for state in states %}
+    <option value="{{ state.id }}" {% if state.id == agency.state_id.id %}selected{% endif %}>{{ state.name }}</option>
+  {% endfor %}
+                  </select>
+                    {% comment %} <label>State</label>
+                    <select class="form-control" name="state_id" required>
+                       <option value="0">Select state</option>
+                       {% for c in state %}
+                       <option value="{{ c.id }}" {% if state_obj.id == grower.agency_id %}selected{% endif %}>{{c.name}}</option>
+                       {% endfor %}
+                    </select> {% endcomment %}
+                    </div>
+                    <br>
+              <div class="col-12 col-sm-6">
+                   
+                    <label for="city_id">City</label>
+                    <select class="form-control" name="city_id" id="city_id">
+                      {% for i in agency %}
+                  
+                  <option value="{{ i.city_id.id }}" >{{i.city_id.name }}</option>
+                  {% endfor %}
+                      {% for city in cities %}
+                      <option value="{{ city.id }}" {% if city.id == agency.city_id.id %}selected{% endif %}>{{ city.name }}</option>
+                    {% endfor %}
+                    </select>
+                    {% comment %} 
+                     <label>City</label>
+                    <select class="form-control" name="city_id" required>
+                       <option value="0">Select city</option>
+                       {% for c in city %}
+                       <option value="{{ c.id }}" {% if city_obj.id == grower.agency_id %}selected{% endif %}>{{c.name}}</option>
+                       {% endfor %}
+                    </select> {% endcomment %}
+                    </div>
+                    <br>
+            <div class="col-12">
+              <button type="submit" class="btn btn-info">Edit Agency</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+

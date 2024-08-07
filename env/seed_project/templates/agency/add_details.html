@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row m-4">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <form method="post" action="{% url 'agency_update_details' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="hidden" class="form-control" name="fieldworker_id" value="{{ fieldworker_id }}">
+            <div class="col-12">
+              <h5 class="form-title"><span>Field Worker Details</span></h5>
+            </div>
+           {% include 'includes/messages.html' %}
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Field Worker Image</label>
+                <input type="file" class="form-control" name="profile_pic" src="/{{user.profile_pic}}"/>
+                {% comment %} <input type="text" class="form-control" name="fieldworker_id" value="{% for i in fieldworker %}
+                {{i.admin.id}}
+                {% endfor %}" hidden/> {% endcomment %}
+                {% if user.profile_pic %}
+            <img src="/{{user.profile_pic}}" style="margin-top: 15px; margin-left: 50px; height: 100px;" alt="User Image">
+            {% endif %}
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>First Name</label>
+                <input type="text" class="form-control" name="first_name" value="{{user.first_name}}"
+                />
+                               
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" class="form-control" name="last_name" value= "{{user.last_name}}"/>
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Email</label>
+                <input type="text" class="form-control" name="email" value= "{{user.email}}" />
+              </div>
+            </div>
+            
+             <div class="col-4 col-sm-11">
+                <div class="form-group">
+                   <label>DOB</label>
+                   <input type="date" class="form-control" name="dob" value="{{fieldworker.dob}}">
+                </div>
+             </div>
+             <div class="col-4 col-sm-11">
+                <div class="form-group">
+                   <label>Phone Number</label>
+                   <input type="text" class="form-control" name="phone_number" value= "{{fieldworker.phone_number}}" >
+                </div>
+             </div>
+             <div class="col-4 col-sm-11">
+                <div class="form-group">
+                   <label>Gender</label>
+                   <input type="text" class="form-control" name="gender" value= "{{fieldworker.gender}}" >
+                </div>
+             </div>
+             
+             <div class="col-12 col-sm-6">
+              <label for="agency_id">Agency</label>
+              <select class="form-control" readonly name="agency_id" id="agency_id">
+                
+            
+            <option value="{{ fieldworker.agency_id.id }}" >{{fieldworker.agency_id.name }}</option>
+            
+                {% for agency in agencies %}
+                <option value="{{ agency.id }}" readonly {% if agency.id == branch.agency_id.id %}selected{% endif %}>{{ agency.name }}</option>
+              {% endfor %}
+              </select>
+        </div>
+        <br>
+        <div class="col-12 col-sm-6">
+          <label for="branch_id">Branch</label>
+          <select class="form-control" readonly name="branch_id" id="branch_id">
+            
+        <option value="{{ fieldworker.branch_id.id }}" >{{fieldworker.branch_id.name }}</option>
+        
+            {% for branch in branches %}
+            <option value="{{ branch.id }}"  {% if branch.id == fieldworker.branch_id.id %}selected{% endif %}>{{ branch.name }}</option>
+          {% endfor %}
+          </select>
+        </div>
+        <br>
+
+        <div class="col-12 col-sm-6">
+          <label>Grower</label>
+          
+          <input type="text"  class="form-control" readonly name="grower" value="{{fieldworker.grower}}"
+        />
+
+    </div>
+        <br>
+
+          <div class="col-12">
+            <button type="submit" class="btn btn-info"> Next <i class="fas fa-angle-double-right"></i></button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

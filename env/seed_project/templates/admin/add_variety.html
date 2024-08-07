@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="row m-4">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <form method="post" action="{% url 'add_variety' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="col-12">
+              <h5 class="form-title"><span>Add Variety</span></h5>
+            </div>
+            {% if messages %}
+              {% for message in messages %}
+                {% if message.tags == 'success' %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {{message}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                {%endif%}
+              {% endfor %}
+            {% endif %}
+            
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Variety Name</label>
+                <input type="text" class="form-control" name="name" />
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Yield Per Acre</label>
+                <input type="text" class="form-control" name="yield_per_acre" />
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Maturity Duration</label>
+                <input type="text" class="form-control" name="maturity_duration" />
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Description</label>
+                <input type="text" class="form-control" name="description" />
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+                <div class="form-group">
+                  <label>Variety Image</label>
+                  <input type="file" class="form-control" name="variety_image" />
+                </div>
+              </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-info">Add Variety</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% comment %} 
+
+name = models.CharField(max_length=50)
+yield_per_acre = models.CharField(max_length=50)
+maturity_duration = models.DateField(auto_now_add=False)
+description = models.TextField()
+variety_imag {% endcomment %}

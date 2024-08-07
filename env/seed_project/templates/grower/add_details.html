@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row m-4">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <form method="post" action="{% url 'update_details' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="hidden" class="form-control" name="grower_id" value="{{ grower_id }}">
+            <div class="col-12">
+              <h5 class="form-title"><span>Grower Details</span></h5>
+            </div>
+           {% include 'includes/messages.html' %}
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Grower Image</label>
+                <input type="file" class="form-control" name="profile_pic" src="/{{user.profile_pic}}"/>
+                {% if user.profile_pic %}
+            <img src="/{{user.profile_pic}}" style="margin-top: 15px; margin-left: 50px; height: 100px;" alt="User Image">
+            {% endif %}
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>First Name</label>
+                <input type="text" class="form-control" name="first_name" value="{{user.first_name}}"
+                />
+                               
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" class="form-control" name="last_name" value= "{{user.last_name}}"/>
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Email</label>
+                <input type="text" class="form-control" name="email" value= "{{user.email}}" />
+              </div>
+            </div>
+            
+             <div class="col-4 col-sm-11">
+                <div class="form-group">
+                   <label>Aadhar Number</label>
+                   <input type="text" class="form-control" readonly name="aadhar_number" value="{{grower.aadhar_number}}">
+                </div>
+             </div>
+             <div class="col-4 col-sm-11">
+                <div class="form-group">
+                   <label>PAN Number</label>
+                   <input type="text" class="form-control" readonly name="pan_number" value= "{{grower.pan_number}}" >
+                </div>
+             </div>
+             <div class="col-4 col-sm-11">
+                <div class="form-group">
+                   <label>Mobile Number</label>
+                   <input type="text" class="form-control" name="mobile_number" value= "{{grower.mobile_number}}" >
+                </div>
+             </div>
+             <div class="col-4 col-sm-11">
+                <div class="form-group">
+                   <label>Address</label>
+                   <textarea class="form-control" name="address">{{grower.address}}</textarea>
+                </div>
+             </div>
+             <div class="col-12 col-sm-6">
+              <label for="country_id">Country</label>
+              <select class="form-control" readonly name="country_id" id="country_id">
+               
+                <option value="{{ grower.country_id.id }}" >{{grower.country_id.name }}</option>
+              
+                {% for country in countries %}
+                <option value="{{ country.id }}" {% if grower.country_id.id == country.id %}selected{% endif %}>{{ country.name }}</option>
+                  {% endfor %}
+                
+              </select>
+        </div>
+        <br>
+        <div class="col-12 col-sm-6">
+          <label for="state_id">State</label>
+          <select  class="form-control" readonly name="state_id" id="state_id">
+           
+          <option value="{{ grower.state_id.id }}" >{{grower.state_id.name }}</option>
+          
+            {% for state in states %}
+<option value="{{ state.id }}" {% if state.id == grower.state_id.id %}selected{% endif %}>{{ state.name }}</option>
+{% endfor %}
+          </select>
+        </div>
+        <br>
+        <div class="col-12 col-sm-6">
+          <label for="city_id">City</label>
+          <select class="form-control" readonly name="city_id" id="city_id">
+            
+        <option value="{{ grower.city_id.id }}" >{{grower.city_id.name }}</option>
+        
+            {% for city in cities %}
+            <option value="{{ city.id }}" {% if city.id == grower.city_id.id %}selected{% endif %}>{{ city.name }}</option>
+          {% endfor %}
+          </select>
+        </div>
+        <br>
+        <div class="col-12 col-sm-6">
+          <label for="crop_id">Crop</label>
+          <select class="form-control" readonly name="crop_id" id="crop_id">
+          
+        <option value="{{ grower.crop_id.id }}" >{{grower.crop_id.name }}</option>
+       
+            {% for crop in crops %}
+            <option value="{{ crop.id }}" {% if crop.id == grower.crop_id.id %}selected{% endif %}>{{ crop.name }}</option>
+          {% endfor %}
+          </select>
+        </div>
+         <br> 
+        
+          <div class="col-12">
+            <button type="submit" class="btn btn-info"> Next <i class="fas fa-angle-double-right"></i></button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

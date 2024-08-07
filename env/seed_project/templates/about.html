@@ -1,0 +1,206 @@
+<!-- myapp/templates/registration.html -->
+{% comment %} {% extends "includes/navbar.html" %} {% endcomment %}
+<!DOCTYPE html>
+<html lang="en">
+    {% load static%}
+    <div class="header">
+      <div class="header-left" style="background-color: white;">
+          <a href="{% url 'login' %}" class="logo">
+         <img src="{% static 'assets/img/homelogo2.png' %}" style="max-height: 60px;margin-left: 40px;margin-top: 10px;" alt="Logo">
+         </a>
+         <nav class="navbar navbar-expand-lg navbar-light bg-white">
+          <div class="container-fluid">
+             <button
+              class="navbar-toggler"
+              type="button"
+              data-mdb-toggle="collapse"
+              data-mdb-target="#navbarExample01"
+              aria-controls="navbarExample01"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <i class="fas fa-bars"></i>
+            </button> 
+            <div class="collapse navbar-collapse" id="navbarExample01" style="margin-left: 150px;"> 
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0" >
+                <li class="nav-item" style="margin-right: 100px;">
+                  <a class="nav-link" href="{% url 'login'%}">Home</a>
+                </li>
+                <li class="nav-item active" style="margin-right: 100px;">
+                  <a class="nav-link" aria-current="page" href="{% url 'about'%}">About</a>
+                </li>
+                <li class="nav-item" style="margin-right: 100px;">
+                  <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                </li>
+                <li class="nav-item" style="margin-right: 100px;">
+                  <a class="nav-link" href="{% url 'login' %}">Login</a>
+                </li>
+                <li class="nav-item" style="margin-right: 100px;">
+                  <a class="nav-link" href="{% url 'register' %}">Register</a>
+                </li>
+               
+              </ul>
+            </div>
+           </div>
+        </nav> 
+         {% comment %} <a href="{% url 'grower_home'%}" class="logo logo-small">
+         <img src="{% static 'assets/img/logo-small.png' %}" alt="Logo" width="30" height="30"> {% endcomment %}
+         </a> 
+      </div>
+      
+      </div>
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+      <title>Seed Test - Register</title>
+      {% comment %} <link rel="shortcut icon" href="{% static 'assets/img/favicon.png' %}"> {% endcomment %}
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,600;0,700;1,400&amp;display=swap">
+      <link rel="stylesheet" href="{% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/plugins/fontawesome/css/fontawesome.min.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/plugins/fontawesome/css/all.min.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+      <style>
+         
+           body {
+             font-family: system-ui, sans-serif;
+             background: whitesmoke;
+             min-height: 100vh;
+           }
+
+           .card1 {
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            width: 40%;
+            border-radius: 5px;
+          }
+          
+          .card1:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+          }
+          
+          img {
+            border-radius: 5px 5px 0 0;
+          }
+          
+          .container {
+            padding: 2px 16px;
+          }
+        
+     </style>
+   </head>
+   <body>
+    <div style="margin-top: 100px;margin-left: 300px;margin-right: 300px;">
+      
+    <div class="card text-center" >
+      <div class="card-header" style="height: 70px;">
+       <h3>About Us</h3> 
+      </div>
+      <div class="card-body" >
+        {% comment %} <h5 class="card-title">Special title treatment</h5> {% endcomment %}
+        <p class="card-text" style="font-size:large">This website presents a modern solution to the problem faced by commercial 
+          farmers and seed packaging industries. For researchers studying seeds, determining
+           the quality and performance of seeds is an essential task.   Filtering out every 
+           single bad or damaged seed in commercial farming is a very tedious, time-consuming, 
+           and error-prone task. Hence, filtering the seeds in clusters can minimize this issue.
+            This project outlines a method to improve the productivity of the seed production 
+            and seed packaging processes. Here we used a high-quality dataset that includes fine 
+            maize seeds and damaged maize seeds. By using CNN which is the Deep Learning technique
+            , the system classifies an input image as Excellent, Good, Average, Bad, and Worst 
+            quality seed cluster. The Good and Excellent seed clusters (sometimes Average) can
+             be further used for cultivation, and the Worst and Bad clusters can be rejected. 
+             Django framework is used to create the web application where the user can upload 
+             the image and test for quality and get the certification.
+               {% comment %} <a href="#" class="btn btn-info">Go somewhere</a> {% endcomment %}
+      </div>
+      
+    </div>
+    {% comment %} <h3  style="max-width: 18rem;margin-left: 300px">The Team</h3> {% endcomment %}
+    <div class="card text-center" >
+    <div class="card-header" style="height: 70px;">
+      <h3>Our Team</h3> 
+     </div>
+     </div>
+
+    <div style="display: flex; flex-direction: row;">
+    <div class="card1" style="margin-left: 30%;">
+      {% comment %} <a href="{% url 'login' %}" class="logo"> {% endcomment %}
+        <img src="{% static 'assets/img/sir.jpg' %}" style="width:100%;" alt="Logo">
+        {% comment %} </a> {% endcomment %}
+      {% comment %} <img src="img_avatar.png" alt="Avatar" style="width:100%"> {% endcomment %}
+     <br>
+      <div class="container">
+        <h4><b>Prakash Patil</b></h4>
+        <p>Founder and CEO pravinya, mentor</p>
+      </div>
+    </div>
+
+    
+    </div>
+    <br>
+    {% comment %} <br> {% endcomment %}
+
+
+    <div style="display: flex; flex-direction: row;">
+      <div class="card1">
+        {% comment %} <a href="{% url 'login' %}" class="logo"> {% endcomment %}
+          {% comment %} <img src="{% static 'assets/img/sahana.jpg' %}" style="width:100%" alt="Logo"> {% endcomment %}
+          {% comment %} </a> {% endcomment %}
+        {% comment %} <img src="img_avatar.png" alt="Avatar" style="width:100%"> {% endcomment %}
+       <br>
+        <div class="container">
+          <h4><b>Sahana Kubsad</b></h4>
+          <p>sahanakubsadsrk.842@gmail.com</p>
+        </div>
+      </div>
+  
+      <div class="card1" style="margin-left: 200px;">
+        {% comment %} <a href="{% url 'login' %}" class="logo"> {% endcomment %}
+          {% comment %} <img src="{% static 'assets/img/sindhu.jpg' %}" style="width:100%;" alt="Logo"> {% endcomment %}
+          {% comment %} </a> {% endcomment %}
+        {% comment %} <img src="img_avatar.png" alt="Avatar" style="width:100%"> {% endcomment %}
+       <br>
+        <div class="container">
+          <h4><b>Sindhu Jumanal</b></h4>
+          <p>sindhujumanal31@gmail.com</p>
+        </div>
+      </div>
+  
+      
+      </div>
+      <br>
+      {% comment %} <br> {% endcomment %}
+      <div style="display: flex; flex-direction: row;">
+        <div class="card1">
+          {% comment %} <a href="{% url 'login' %}" class="logo"> {% endcomment %}
+            {% comment %} <img src="{% static 'assets/img/sru.jpg' %}" style="width:100%" alt="Logo"> {% endcomment %}
+            {% comment %} </a> {% endcomment %}
+          {% comment %} <img src="img_avatar.png" alt="Avatar" style="width:100%"> {% endcomment %}
+         <br>
+          <div class="container">
+            <h4><b>Shrusti Chindi</b></h4>
+            <p>shrustichindi@gmail.com</p>
+          </div>
+        </div>
+    
+        <div class="card1" style="margin-left: 200px;">
+        {% comment %} <img src="{% static 'assets/img/sup.jpg' %}" style="width:100%;" alt="Logo"> {% endcomment %}
+           <br>
+          <div class="container">
+            <h4><b>Supriya Pilli</b></h4>
+            <p>supriyapilli227@gmail.com</p>
+          </div>
+        </div>
+    
+        </div>
+        </div>
+        </div>
+    
+      <script src="{% static 'assets/js/jquery-3.6.0.min.js' %}"></script>
+      <script src="{% static 'assets/js/popper.min.js' %}"></script>
+      <script src="{% static 'assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+      <script src="{% static 'assets/js/script.js' %}"></script>
+   </body>
+</html>

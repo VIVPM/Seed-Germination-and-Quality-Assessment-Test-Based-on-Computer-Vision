@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="row m-4">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <form method="post" action="{% url 'update_crop' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <a style="margin-left: 88%;" href="{% url 'view_crop' %}" id="downloadButton" class="btn btn-info mr-2"><i class="fas fa-angle-double-left"></i> Go back</a>
+            <div class="col-12">
+              <h5 class="form-title"><span>Edit Crop</span></h5>
+            </div>
+            {% if messages %}
+              {% for message in messages %}
+                {% if message.tags == 'success' %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {{message}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                {%endif%}
+              {% endfor %}
+            {% endif %}
+            
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Crop Name</label>
+                <input type="text" class="form-control" name="name" value="{% for i in crop %}{{i.name}}
+                {% endfor %}"/>
+                <input type="text" class="form-control" name="crop_id" value="{% for i in crop %} {{i.id}}
+                {% endfor %}" hidden />
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Plant Type</label>
+                <input type="text" class="form-control" name="plant_type" value="{% for i in crop %}{{i.plant_type}}
+                {% endfor %}" />
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Soil Type</label>
+                <input type="text" class="form-control" name="soil_type" value="{% for i in crop %}{{i.soil_type}}
+                {% endfor %}"/>
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Cultivation Type</label>
+                <input type="text" class="form-control" name="cultivation_type" value="{% for i in crop %}{{i.cultivation_type}}
+                {% endfor %}"/>
+              </div>
+            </div>
+            {% comment %} <div class="col-12 col-sm-6">
+                <div class="form-group">
+                   <label>From Month</label>
+                   <div>
+                      <input type="date" class="form-control" name="from_month" required>
+                   </div>
+                </div>
+             </div> {% endcomment %}
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Description</label>
+                <input type="text" class="form-control" name="description" value="{% for i in crop %}{{i.description}}
+                {% endfor %}" />
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Area</label>
+                <input type="text" class="form-control" name="area" value="{% for i in crop %}{{i.area}}
+                {% endfor %}"/>
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Area</label>
+                <input type="date" class="form-control" name="sowing_date" value={% for i in crop %}{{i.sowing_date}}
+                {% endfor %}/>
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Area</label>
+                <input type="date" class="form-control" name="maturity_date" value={% for i in crop %}{{i.maturity_date}}
+                {% endfor %}/>
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+                <div class="form-group">
+                  <label>Crop Image</label>
+                    <input type="file" class="form-control" name="crop_image" /> 
+                    
+                </div>
+              </div>
+              <div class="col-12 col-sm-6">
+                <label for="season_id">Season</label>
+              <select class="form-control" name="season_id" id="season_id">
+                {% for i in crop %}
+            
+               <option value="{{ i.season_id.id }}" >{{i.season_id.name }}</option>
+               {% endfor %}
+                {% for season in seasons %}
+                <option value="{{ season.id }}" {% if season.id == crop.season_id.id %}selected{% endif %}>{{ season.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+                <br>  
+                <div class="col-12 col-sm-6">
+                  <label for="variety_id">Variety</label>
+                  <select class="form-control" name="variety_id" id="variety_id">
+                    {% for i in crop %}
+                
+                   <option value="{{ i.variety_id.id }}" >{{i.variety_id.name }}</option>
+                   {% endfor %}
+                    {% for variety in varieties %}
+                    <option value="{{ variety.id }}" {% if variety.id == crop.variety_id.id %}selected{% endif %}>{{ variety.name }}</option>
+                    {% endfor %}
+                  </select>
+                    </div>
+                    <br>
+            <div class="col-12">
+              <button type="submit" class="btn btn-info">Edit Variety</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+

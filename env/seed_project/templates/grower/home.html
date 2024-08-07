@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+<div class="header">
+  <div class="header-left">
+      <a href="{% url 'grower_home'%}" class="logo">
+      <img src="{% static 'assets/img/homelogo2.png' %}" style="max-height: 50px;margin-left: 20px;" alt="Logo">
+     </a>
+     {% comment %} <a href="{% url 'grower_home'%}" class="logo logo-small">
+     <img src="{% static 'assets/img/logo-small.png' %}" alt="Logo" width="30" height="30"> {% endcomment %}
+     </a> 
+  </div>
+  </div>
+{% block content %}
+<header>
+    <!-- Intro settings -->
+    <style>
+      /* Default height for small devices */
+      #intro-example {
+        height: 500px;
+      }
+  
+      /* Height for devices larger than 992px */
+      @media (min-width: 992px) {
+        #intro-example {
+          height: 680px;
+        }
+      }
+    </style>
+    
+    <div
+      id="intro-example"
+      class="p-5 text-center bg-image"
+      style="background-image: url('https://images.unsplash.com/photo-1599320092708-8a9dde49fc2c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"
+    >
+      <div class="mask" style="background-color: rgba(0, 0, 0, 0.7);">
+        <div class="d-flex justify-content-center align-items-center h-100">
+          <div class="text-white">
+            <h1 class="mb-3">Seed Germination & Quality Assessment Test</h1>
+            {% comment %} <h5 class="mb-4">Best & free guide of responsive web design</h5> {% endcomment %}
+            <a
+              class="btn btn-outline-light btn-lg m-2"
+              {% comment %} href="https://www.youtube.com/watch?v=c9B4TPnak1A" {% endcomment %}
+              role="button"
+              rel="nofollow"
+              {% comment %} target="_blank" {% endcomment %}
+              href="{% url 'add_details' %}"
+            ><i class="fa fa-plus"></i><span> Edit Details</span></a
+            >
+            <a
+              class="btn btn-outline-light btn-lg m-2"
+              {% comment %} href="https://mdbootstrap.com/docs/standard/" {% endcomment %}
+              {% comment %} target="_blank" {% endcomment %}
+              role="button"
+              href="{% url 'testing_page'%}"
+            ><i class="fa fa-check"></i> <span>Testing</span></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Background image -->
+  </header>
+
+{% endblock content %} 

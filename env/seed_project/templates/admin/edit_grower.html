@@ -1,0 +1,171 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row m-4">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <form method="post" action="{% url 'update_grower' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <a style="margin-left: 88%;" href="{% url 'view_grower' %}" id="downloadButton" class="btn btn-info mr-2"><i class="fas fa-angle-double-left"></i> Go back</a>
+            
+            <div class="col-12">
+              <h5 class="form-title"><span>Edit Grower</span></h5>
+            </div>
+           {% include 'includes/messages.html' %}
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Grower Image</label>
+                <input type="file" class="form-control" name="profile_pic" />
+                <input type="text" class="form-control" name="grower_id" value="{% for i in grower %}
+                {{i.admin.id}}
+                {% endfor %}" hidden/>
+                
+              </div>
+              {% for g in grower %}
+              {% if g.profile_pic %}
+                  <img class="avatar-img rounded-circle" src="/{{ g.profile_pic.url }}" alt="User Image" />
+              {% endif %}
+              {% endfor %}
+            </div>
+            {% comment %} {% for i in grower %} {% endcomment %}
+                
+                {% comment %} {% endfor %} {% endcomment %}
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>First Name</label>
+                <input type="text" class="form-control" name="first_name" value= {% for i in grower %}
+                    {{i.admin.first_name}}                
+                {% endfor %} />
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" class="form-control" name="last_name" value= {% for i in grower %}
+                {{i.admin.last_name}}                
+            {% endfor %} />
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Email</label>
+                <input type="text" class="form-control" name="email" value= {% for i in grower %}
+                {{i.admin.email}}                
+            {% endfor %} />
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Username</label>
+                <input type="text" class="form-control" name="username" value= {% for i in grower %}
+                {{i.admin.username}}                
+            {% endfor %} />
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control" name="password" placeholder="Fill Only If You Want To Change Password" />
+              </div>
+            </div>
+             <div class="col-4 col-sm-11">
+                <div class="form-group">
+                   <label>Aadhar Number</label>
+                   <input type="text" class="form-control" name="aadhar_number" value= {% for i in grower %}
+                   {{i.aadhar_number}}                
+               {% endfor %} >
+                </div>
+             </div>
+             <div class="col-4 col-sm-11">
+                <div class="form-group">
+                   <label>PAN Number</label>
+                   <input type="text" class="form-control" name="pan_number" value= {% for i in grower %}
+                   {{i.pan_number}}                
+               {% endfor %} >
+                </div>
+             </div>
+             <div class="col-4 col-sm-11">
+                <div class="form-group">
+                   <label>Mobile Number</label>
+                   <input type="text" class="form-control" name="mobile_number" value= {% for i in grower %}
+                   {{i.mobile_number}}                
+               {% endfor %} >
+                </div>
+             </div>
+             <div class="col-4 col-sm-11">
+                <div class="form-group">
+                   <label>Address</label>
+                   <textarea class="form-control" name="address">{% for i in grower %}{{i.address}}                
+                {% endfor %}</textarea>
+                </div>
+             </div>
+             <div class="col-12 col-sm-6">
+              <label for="country_id">Country</label>
+              <select class="form-control" name="country_id" id="country_id">
+                {% comment %} {% for a in agency %} {% endcomment %}
+                {% for i in grower %}
+                
+                <option value="{{ i.country_id.id }}" >{{i.country_id.name }}</option>
+                {% endfor %}
+                {% for country in countries %}
+                <option value="{{ country.id }}" {% if grower.country_id.id == country.id %}selected{% endif %}>{{ country.name }}</option>
+                  {% endfor %}
+                
+              </select>
+             </div>
+             <br>
+             <div class="col-12 col-sm-6">
+              <label for="state_id">State</label>
+              <select  class="form-control" name="state_id" id="state_id">
+                {% for i in grower %}
+              
+              <option value="{{ i.state_id.id }}" >{{i.state_id.name }}</option>
+              {% endfor %}
+                {% for state in states %}
+<option value="{{ state.id }}" {% if state.id == grower.state_id.id %}selected{% endif %}>{{ state.name }}</option>
+{% endfor %}
+              </select>
+             </div>
+             <br>
+             <div class="col-12 col-sm-6">
+              <label for="city_id">City</label>
+              <select class="form-control" name="city_id" id="city_id">
+                {% for i in grower %}
+            
+            <option value="{{ i.city_id.id }}" >{{i.city_id.name }}</option>
+            {% endfor %}
+                {% for city in cities %}
+                <option value="{{ city.id }}" {% if city.id == grower.city_id.id %}selected{% endif %}>{{ city.name }}</option>
+              {% endfor %}
+              </select>
+             </div>
+             <br>
+             <div class="col-12 col-sm-6">
+              <label for="crop_id">Crop</label>
+              <select class="form-control" name="crop_id" id="crop_id">
+                {% for i in grower %}
+            
+            <option value="{{ i.crop_id.id }}" >{{i.crop_id.name }}</option>
+            {% endfor %}
+                {% for crop in crops %}
+                <option value="{{ crop.id }}" {% if crop.id == grower.crop_id.id %}selected{% endif %}>{{ crop.name }}</option>
+              {% endfor %}
+              </select>
+             </div>
+              <br>
+              <div class="col-4 col-sm-11">
+                <div class="form-group">
+                  <label>Test Image</label>
+                  <input type="file" class="form-control" name="examination_image" />
+                </div>
+              </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-info">Edit Grower</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+{% endblock content %}

@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="row m-4">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <form method="post" action="{% url 'update_variety' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <a style="margin-left: 88%;" href="{% url 'view_variety' %}" id="downloadButton" class="btn btn-info mr-2"><i class="fas fa-angle-double-left"></i> Go back</a>
+            
+            <div class="col-12">
+              <h5 class="form-title"><span>Edit Variety</span></h5>
+            </div>
+            {% if messages %}
+              {% for message in messages %}
+                {% if message.tags == 'success' %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {{message}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                {%endif%}
+              {% endfor %}
+            {% endif %}
+            
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Variety Name</label>
+                <input type="text" class="form-control" name="name" value="{% for i in variety %} {{i.name}}
+                {% endfor %}"/>
+                <input type="text" class="form-control" name="variety_id" value="{% for i in variety %} {{i.id}}
+                {% endfor %}" hidden/>
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Yield Per Acre</label>
+                <input type="text" class="form-control" name="yield_per_acre" value="{% for i in variety %}{{i.yield_per_acre}}
+                {% endfor %}"/>
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Maturity Duration</label>
+                <input type="text" class="form-control" name="maturity_duration" value="{% for i in variety %}{{i.maturity_duration}}
+                {% endfor %}"/>
+              </div>
+            </div>
+            {% comment %} <div class="col-12 col-sm-6">
+                <div class="form-group">
+                   <label>From Month</label>
+                   <div>
+                      <input type="date" class="form-control" name="from_month" required>
+                   </div>
+                </div>
+             </div> {% endcomment %}
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Description</label>
+                <input type="text" class="form-control" name="description" value="{% for i in variety %}{{i.description}}
+                {% endfor %}" />
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+                <div class="form-group">
+                  <label>Variety Image</label>
+                  <input type="file" class="form-control" name="variety_image" />
+                </div>
+              </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-info">Add Variety</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% comment %} 
+
+name = models.CharField(max_length=50)
+yield_per_acre = models.CharField(max_length=50)
+maturity_duration = models.DateField(auto_now_add=False)
+description = models.TextField()
+variety_imag {% endcomment %}

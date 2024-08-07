@@ -1,0 +1,145 @@
+{% comment %} {% extends "base.html" %} {% endcomment %}
+<!DOCTYPE html>
+<html lang="en">
+    {% load static%}
+   <!-- Mirrored from preschool.dreamguystech.com/html-template/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 28 Oct 2021 11:11:39 GMT -->
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+      <title>Seed Test - Login</title>
+      {% comment %} <link rel="shortcut icon" href="{% static 'assets/img/favicon.png' %}"> {% endcomment %}
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,600;0,700;1,400&amp;display=swap">
+      <link rel="stylesheet" href="{% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/plugins/fontawesome/css/fontawesome.min.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/plugins/fontawesome/css/all.min.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+   </head>
+{% block content %}
+<div class="row m-4">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <form method="post" action="{% url 'profilegrower' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="col-12">
+              <h5 class="form-title"><span>Grower Profile</span></h5>
+            </div>
+           {% include 'includes/messages.html' %}
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Grower Image</label>
+                <input type="file" class="form-control" name="profile_pic"  required/>
+              
+              </div>
+            
+            </div>
+            {% comment %} <img style="height: 200px;" src="{{filePathName}}" alt="image"> {% endcomment %}
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>First Name</label>
+                <input type="text" class="form-control" name="first_name" required/>
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" class="form-control" name="last_name" required/>
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Email</label>
+                <input type="text" class="form-control" name="email" readonly value="{{ email}}" required/>
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Username</label>
+                <input type="text" class="form-control" name="username" value="{{ username}}" required/>
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control" name="password" readonly value="{{ password}}" required/>
+              </div>
+            </div>
+             <div class="col-4 col-sm-11">
+                <div class="form-group">
+                   <label>Aadhar Number</label>
+                   <input type="text" class="form-control" name="aadhar_number" required>
+                </div>
+             </div>
+             <div class="col-4 col-sm-11">
+                <div class="form-group">
+                   <label>PAN Number</label>
+                   <input type="text" class="form-control" name="pan_number" required>
+                </div>
+             </div>
+             <div class="col-4 col-sm-11">
+                <div class="form-group">
+                   <label>Mobile Number</label>
+                   <input type="text" class="form-control" name="mobile_number" required>
+                </div>
+             </div>
+             <div class="col-4 col-sm-11">
+                <div class="form-group">
+                   <label>Address</label>
+                   <textarea class="form-control" name="address" required ></textarea>
+                </div>
+             </div>
+             <div class="col-12 col-sm-6">
+                   <label>Country</label>
+                   <select class="form-control" name="country_id" required>
+                      <option value="0">Select country</option>
+                      {% for c in country %}
+                      <option value="{{ c.id }}" >{{c.name}}</option>
+                      {% endfor %}
+                   </select>
+             </div>
+             <br>
+             <div class="col-12 col-sm-6">
+                   <label>State</label>
+                   <select class="form-control" name="state_id" required>
+                      <option value="0">Select state</option>
+                      {% for s in state %}
+                      <option value="{{s.id}}">{{s.name}}</option>
+                      {% endfor %}
+                   </select>
+             </div>
+             <br>
+             <div class="col-12 col-sm-6">
+                   <label>City</label>
+                   <select class="form-control" name="city_id" required>
+                      <option value="0">Select city</option>
+                      {% for d in city %}
+                      <option value="{{d.id}}">{{d.name}}</option>
+                      {% endfor %}
+                   </select>
+             </div>
+             <br>
+             <div class="col-12 col-sm-6">
+              <label>Crop</label>
+              <select class="form-control" name="crop_id" required>
+                 <option value="0">Select crop</option>
+                 {% for c in crop %}
+                 <option value="{{ c.id }}">{{c.name}}</option>
+                 {% endfor %}
+              </select>
+              </div>
+              <br>
+              <div class="col-4 col-sm-11">
+                <div class="form-group">
+                  <label>Test Image</label>
+                  <input type="file" class="form-control" name="examination_image" required/>
+                </div>
+              </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-info">Add Grower</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="row m-4">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <form method="post" action="{% url 'add_crop' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="col-12">
+              <h5 class="form-title"><span>Add Crop</span></h5>
+            </div>
+            {% if messages %}
+              {% for message in messages %}
+                {% if message.tags == 'success' %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {{message}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                {%endif%}
+              {% endfor %}
+            {% endif %}
+            
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Crop Name</label>
+                <input type="text" class="form-control" name="name" />
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Plant Type</label>
+                <input type="text" class="form-control" name="plant_type" />
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Soil Type</label>
+                <input type="text" class="form-control" name="soil_type" />
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Cultivation Type</label>
+                <input type="text" class="form-control" name="cultivation_type" />
+              </div>
+            </div>
+            <div class="col-12 col-sm-6">
+              <div class="form-group">
+                <label>Sowing Date</label>
+                <input type="date" class="form-control" name="sowing_date" required/>
+              </div>
+            </div>  
+            <div class="col-12 col-sm-6"> 
+              <div class="form-group">
+                <label>Maturity Date</label>
+                <input type="date" class="form-control" name="maturity_date" required/>
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Description</label>
+                <input type="text" class="form-control" name="description" />
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Area</label>
+                <input type="text" class="form-control" name="area" />
+              </div>
+            </div>
+            <div class="col-4 col-sm-11">
+                <div class="form-group">
+                  <label>Crop Image</label>
+                  <input type="file" class="form-control" name="crop_image" />
+                </div>
+              </div>
+              <div class="col-12 col-sm-6">
+                <label>Season</label>
+                <select class="form-control" name="season_id" required>
+                   <option value="0">Select season</option>
+                   {% for c in season %}
+                   <option value="{{ c.id }}">{{c.name}}</option>
+                   {% endfor %}
+                </select>
+                </div>
+                <br>
+                <div class="col-12 col-sm-6">
+                    <label>Variety</label>
+                    <select class="form-control" name="variety_id" required>
+                       <option value="0">Select variety</option>
+                       {% for c in variety %}
+                       <option value="{{ c.id }}">{{c.name}}</option>
+                       {% endfor %}
+                    </select>
+                    </div>
+                    <br>
+            <div class="col-12">
+              <button type="submit" class="btn btn-info">Add Variety</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+
+{% comment %} name = name,
+            plant_type = plant_type,
+            soil_type = soil_type,
+            cultivation_type = cultivation_type,
+            name = name,
+            area = area,
+            description = description,
+            crop_image = crop_image,
+            variety_id = variety_id,
+            season_id  {% endcomment %}
+
+            

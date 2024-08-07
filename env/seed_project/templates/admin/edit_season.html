@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row m-4">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <form method="post" action="{% url 'update_season' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <a style="margin-left: 88%;" href="{% url 'view_season' %}" id="downloadButton" class="btn btn-info mr-2"><i class="fas fa-angle-double-left"></i> Go back</a>
+            
+            <div class="col-12">
+              <h5 class="form-title"><span>Edit Season</span></h5>
+            </div>
+           {% include 'includes/messages.html' %}
+            <div class="col-4 col-sm-11">
+              <div class="form-group">
+                <label>Season Name</label>
+                <input type="text" class="form-control" name="name" value= "{% for i in season %}{{i.name}}                
+                {% endfor %}" required />
+                <input type="text" class="form-control" name="season_id" value="{% for i in season %}{{i.id}}                
+            {% endfor %}" hidden/>
+              </div>
+            </div>
+
+              <div class="col-12 col-sm-6">
+                <div class="form-group">
+                  <label>From Date</label>
+                  <input type="date" class="form-control" name="season_from_date" value= {% for i in season %}{{i.from_date}}                
+                  {% endfor %} required/>
+                </div>
+              </div>  
+              <div class="col-12 col-sm-6"> 
+                <div class="form-group">
+                  <label>To Month</label>
+                  <input type="date" class="form-control" name="season_to_date" value= {% for s in season %}
+                   {{ s.to_date }}
+              {% endfor %} required/>
+                </div>
+              </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-info">Edit Season</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
